@@ -1,15 +1,51 @@
-# Intermediate code generator (CODE GENERATOR) using python
+# Three-Address Code Generator
 
-It is basically a python program for generating an intermediate three address code.
+Generates intermediate code from CSV files containing arithmetic expressions.
 
-It takes  .csv file formate for input.
+## Quick Start
 
-In this there is left and right columns indicates the "left" and "right" values respectively.
+```bash
+# Install dependency
+python -m pip install pandas
 
-The csv file doesn't contains "=" sign.
+# Run program
+python intermediatecodegenerator.py input.csv
 
-# Code Generator
+# Or with custom CSV
+python intermediatecodegenerator.py your_file.csv
+```
 
-**Code generator** is used to produce the target code for three-address statements. It uses registers to store the operands of the three address statement.
+## CSV Format
 
-**Any suggestation regarding this program is helpful for me**
+```csv
+left,right
+x,a + b
+y,x * c
+z,y - d
+```
+
+**Rules:** Space-separate operators and operands (e.g., `a + b` not `a+b`)
+
+## Features
+
+✅ Generate three-address code with automatic register allocation  
+✅ File output (timestamped)  
+✅ Custom CSV input via command-line  
+✅ Full error handling  
+✅ Statistics reporting  
+
+## Output Example
+
+```
+MOV x , R6
+MOV a , R2
+MOV b , R1
+ADD R2 , R1
+STOR R1 , R6
+```
+
+## Documentation
+
+- **README.md** - This file (quick start)
+- **EXPLANATION.md** - Complete guide with examples
+- **CHEATSHEET.md** - Quick reference

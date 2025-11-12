@@ -1,0 +1,88 @@
+Using custom input file: input.csv
+
+
+Input CSV file: input.csv
+Expressions to process: 9
+
+  left      right
+0    b  c + d + f
+1    f      b + b
+2    r          f
+3    a         10
+4    s     a + 10
+5    d     s - 10
+6    g     10 * d
+7    j     d * 10
+8    c          2
+
+============================================================
+GENERATED THREE-ADDRESS CODE
+============================================================
+
+# Expression 1: b = c + d + f
+  MOV c , R4
+  MOV d , R5
+  ADD R4 , R5
+  MOV f , R6
+  ADD R5 , R6
+  STOR R6 , R3
+
+# Expression 2: f = b + b
+  MOV b , R3
+  MOV b , R3
+  ADD R3 , R3
+  STOR R3 , R6
+
+# Expression 3: r = f
+  MOV f , R9
+
+# Expression 4: a = 10
+  MOV 10 , R2
+
+# Expression 5: s = a + 10
+  MOV a , R2
+  MOV 10 , #10
+  ADD R2 , #10
+  STOR #10 , R10
+
+# Expression 6: d = s - 10
+  MOV s , R10
+  MOV 10 , #10
+  SUB R10 , #10
+  STOR #10 , R5
+
+# Expression 7: g = 10 * d
+  MOV 10 , #10
+  MOV d , R5
+  MUL #10 , R5
+  STOR R5 , R7
+
+# Expression 8: j = d * 10
+  MOV d , R5
+  MOV 10 , #10
+  MUL R5 , #10
+  STOR #10 , R8
+
+# Expression 9: c = 2
+  MOV 2 , R4
+
+============================================================
+GENERATION STATISTICS
+============================================================
+Total expressions processed: 9
+Unique variables: 11
+Registers allocated: 11
+Operators used: -, *, +
+
+Register Mapping:
+  10 -> R0
+  2 -> R1
+  a -> R2
+  b -> R3
+  c -> R4
+  d -> R5
+  f -> R6
+  g -> R7
+  j -> R8
+  r -> R9
+  s -> R10
